@@ -1,0 +1,98 @@
+{
+  "roomCode": "4NUO",
+  "lastUpdated": "2025-04-22T17:23:03.296Z",
+  "components": [
+    {
+      "id": "8cdae985-b344-45a6-962b-0eb2e716254a",
+      "type": "div",
+      "style": {
+        "top": "33px",
+        "left": "85px",
+        "width": "600px",
+        "height": "600px",
+        "backgroundColor": "#f0f0f0",
+        "color": "#000000",
+        "border": "1px solid #cccccc",
+        "borderRadius": "4px",
+        "position": "absolute",
+        "fontSize": "16px",
+        "fontFamily": "Arial, sans-serif",
+        "fontWeight": "bold",
+        "textAlign": "center",
+        "lineHeight": "40px"
+      },
+      "content": "Nuevo Div",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "91fff869-d775-4a85-a6e9-fffa5b6a00d6",
+      "type": "label",
+      "style": {
+        "top": "175px",
+        "left": "176px",
+        "width": "100px",
+        "height": "20px",
+        "backgroundColor": "transparent",
+        "color": "#000000",
+        "position": "absolute",
+        "fontSize": "16px",
+        "fontFamily": "Arial, sans-serif",
+        "fontWeight": "bold",
+        "textAlign": "center",
+        "lineHeight": "40px"
+      },
+      "content": "Etiqueta:",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "17392525-c402-43ec-92c2-0f9adb878baa",
+      "type": "button",
+      "style": {
+        "top": "427px",
+        "left": "306px",
+        "width": "120px",
+        "height": "40px",
+        "backgroundColor": "#4f46e5",
+        "color": "#ffffff",
+        "border": "none",
+        "borderRadius": "6px",
+        "position": "absolute",
+        "fontSize": "14px",
+        "fontFamily": "Arial, sans-serif",
+        "cursor": "pointer",
+        "textAlign": "center",
+        "lineHeight": "40px",
+        "fontWeight": "bold",
+        "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",
+        "transition": "all 0.2s ease",
+        "display": "inline-block"
+      },
+      "content": "Click me",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "fcdf8d40-813b-4499-89ef-446e203ab56b",
+      "type": "label",
+      "style": {
+        "top": "256px",
+        "left": "172px",
+        "width": "100px",
+        "height": "20px",
+        "backgroundColor": "transparent",
+        "color": "#000000",
+        "position": "absolute",
+        "fontSize": "16px",
+        "fontFamily": "Arial, sans-serif",
+        "fontWeight": "bold",
+        "textAlign": "center",
+        "lineHeight": "40px"
+      },
+      "content": "Etiqueta:",
+      "children": [],
+      "parentId": null
+    }
+  ]
+}
