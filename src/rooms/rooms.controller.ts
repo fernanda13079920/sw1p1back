@@ -62,7 +62,9 @@ export class RoomsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.roomsService.remove(+id);
-  }
+@Auth(Role.USER)
+remove(@Param('id') id: string, @ActiveUser() user: UserActiveInterface) {
+  return this.roomsService.remove(+id, user);
+}
+
 }

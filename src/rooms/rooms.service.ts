@@ -10,7 +10,7 @@ import { UserActiveInterface } from 'src/common/interfaces/user-active.interface
 import * as fs from 'fs';
 import { writeFile, mkdir, access, constants } from 'fs/promises';
 import * as path from 'path';
-
+import { NotFoundException, ForbiddenException } from '@nestjs/common';
 import { CanvasStorageService } from './canvas-storage.service';
 import { CanvasSyncHelper } from './helpers/canvas-sync.helper';
 @Injectable()
@@ -98,13 +98,29 @@ export class RoomsService {
   }
 
   // Implementar remove
-  async remove(id: number) {
-    const room = await this.roomRepository.findOneBy({ id });
+  async remove(id: number, user: UserActiveInterface) {
+    const room = await this.roomRepository.findOne({
+      where: { id },
+      relations: ['creator'],
+    });
+  
     if (!room) {
-      throw new Error('Room not found');
+      throw new NotFoundException('Sala no encontrada.');
     }
-    return this.roomRepository.remove(room);
+  
+    if (room.creator.id !== user.id) {
+      throw new ForbiddenException('No tienes permiso para eliminar esta sala.');
+    }
+  
+    // ⚡ Eliminar primero los registros en room_user
+    await this.roomUserRepository.delete({ room: { id } });
+  
+    // ✅ Ahora eliminar la sala
+    await this.roomRepository.remove(room);
+  
+    return { message: 'Sala eliminada correctamente.' };
   }
+  
   //
   // Obtener todos los usuarios de una sala (incluidos conectados y desconectados)
 
@@ -161,24 +177,16 @@ export class RoomsService {
   async getUserRooms(user: UserActiveInterface) {
     const userEntity = await this.userRepository.findOne({
       where: { email: user.email },
-      relations: ['createdRooms', 'rooms', 'rooms.room'],
+      relations: ['createdRooms'], 
     });
-
+  
     if (!userEntity) {
       throw new Error('Usuario no encontrado');
     }
-
-    // Obtenemos las salas que ha creado el usuario
-    const createdRooms = userEntity.createdRooms;
-
-    // Obtenemos las salas donde el usuario es un participante (relación RoomUser)
-    const participantRooms = userEntity.rooms.map(roomUser => roomUser.room);
-
-    // Unimos ambas listas
-    const allRooms = [...createdRooms, ...participantRooms];
-
-    // Devolvemos solo las salas relacionadas con el usuario
-    return allRooms;
+  
+    return userEntity.createdRooms;
   }
+  
+  
 
 }
