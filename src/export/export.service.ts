@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
-import archiver from 'archiver'; 
+import archiver from 'archiver';
 import { promisify } from 'util';
 
 const readFileAsync = promisify(fs.readFile);
@@ -22,12 +22,10 @@ export class ExportService {
     const rawData = await readFileAsync(roomJsonPath, 'utf8');
     const { components } = JSON.parse(rawData);
 
-    // 1. Copiar plantilla base a temporal
     const roomExportPath = path.join(this.exportTmpPath, `angular-${roomCode}`);
     fs.rmSync(roomExportPath, { recursive: true, force: true });
     fs.cpSync(this.templatePath, roomExportPath, { recursive: true });
 
-    // 2. Generar archivos del componente
     const htmlOutput = this.convertJsonToHtml(components);
     const pagesDir = path.join(roomExportPath, 'src', 'app', 'pages', `pages-${roomCode}`);
     await mkdirAsync(pagesDir, { recursive: true });
@@ -38,21 +36,26 @@ export class ExportService {
     await writeFileAsync(htmlPath, htmlOutput);
     await writeFileAsync(tsPath, this.generateComponentTs(roomCode));
 
-    // 3. Actualizar app.routes.ts
-    const routesPath = path.join(roomExportPath, 'src', 'app', 'app.routes.ts');
-    let routesContent = await readFileAsync(routesPath, 'utf8');
-    const importLine = `import { Pages${roomCode}Component } from './pages/pages-${roomCode}/pages-${roomCode}.component';`;
+    // 🔥 Manejo opcional de app.module.ts (solo si existe)
+    const modulePath = path.join(roomExportPath, 'src', 'app', 'app.module.ts');
+    if (fs.existsSync(modulePath)) {
+      let moduleContent = await readFileAsync(modulePath, 'utf8');
 
-    if (!routesContent.includes(importLine)) {
-      routesContent = importLine + '\n' + routesContent;
-      routesContent = routesContent.replace(
-        'export const routes: Routes = [',
-        `export const routes: Routes = [\n  { path: '', component: Pages${roomCode}Component },`
-      );
-      await writeFileAsync(routesPath, routesContent);
+      const importLine = `import { Pages${roomCode}Component } from './pages/pages-${roomCode}/pages-${roomCode}.component';`;
+      if (!moduleContent.includes(importLine)) {
+        moduleContent = importLine + '\n' + moduleContent;
+
+        const declarationsRegex = /declarations:\s*\[(.*?)\]/s;
+        const match = moduleContent.match(declarationsRegex);
+        if (match) {
+          const updated = match[1].trim() + `, Pages${roomCode}Component`;
+          moduleContent = moduleContent.replace(declarationsRegex, `declarations: [${updated}]`);
+        }
+
+        await writeFileAsync(modulePath, moduleContent);
+      }
     }
 
-    // 4. Comprimir a zip
     const zipPath = path.join(this.exportTmpPath, `angular-${roomCode}.zip`);
     await this.zipDirectory(roomExportPath, zipPath);
 
@@ -78,8 +81,7 @@ export class ExportService {
   templateUrl: './pages-${roomCode}.component.html',
   styleUrls: []
 })
-export class Pages${roomCode}Component {}
-`;
+export class Pages${roomCode}Component {}`;
   }
 
   private async zipDirectory(source: string, out: string): Promise<void> {
@@ -87,11 +89,7 @@ export class Pages${roomCode}Component {}
     const stream = fs.createWriteStream(out);
 
     return new Promise((resolve, reject) => {
-      archive
-        .directory(source, false)
-        .on('error', err => reject(err))
-        .pipe(stream);
-
+      archive.directory(source, false).on('error', err => reject(err)).pipe(stream);
       stream.on('close', () => resolve());
       archive.finalize();
     });

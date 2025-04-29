@@ -8,7 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { RoomsModule } from './rooms/rooms.module';
 import { RoomUserModule } from './room-user/room-user.module';
 import { ExportModule } from './export/export.module';
-
+import { OcrModule } from './ocr/ocr.module';
 
 
 @Module({
@@ -32,6 +32,7 @@ import { ExportModule } from './export/export.module';
     RoomsModule,
     RoomUserModule,
     ExportModule,
+    OcrModule,
   ],
   controllers: [AppController],
   providers: [AppService],

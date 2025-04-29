@@ -1,13 +1,122 @@
 {
   "roomCode": "AVPB",
-  "lastUpdated": "2025-04-28T23:04:17.167Z",
+  "lastUpdated": "2025-04-29T18:04:40.982Z",
   "components": [
     {
-      "id": "edf84b18-3da1-475b-877d-8039fdc78e76",
+      "id": "39508b86-08a6-4870-a868-b1cc78af2fe6",
+      "type": "div",
+      "style": {
+        "top": "61px",
+        "left": "77px",
+        "width": "600px",
+        "height": "300px",
+        "backgroundColor": "#ffffff",
+        "color": "#000000",
+        "border": "1px solid #cccccc",
+        "borderRadius": "4px",
+        "position": "absolute",
+        "fontSize": "16px",
+        "fontFamily": "Arial, sans-serif",
+        "fontWeight": "bold",
+        "textAlign": "center",
+        "lineHeight": "40px"
+      },
+      "content": "Inicio de secion",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "67369ef4-7493-4adf-9150-7735775fcad7",
+      "type": "label",
+      "style": {
+        "top": "130px",
+        "left": "164px",
+        "width": "100px",
+        "height": "20px",
+        "backgroundColor": "transparent",
+        "color": "#000000",
+        "position": "absolute",
+        "fontSize": "16px",
+        "fontFamily": "Arial, sans-serif",
+        "fontWeight": "bold",
+        "textAlign": "center",
+        "lineHeight": "40px"
+      },
+      "content": "Correo:",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "360be1e9-26ab-4425-af9d-b2131e8d0dca",
+      "type": "label",
+      "style": {
+        "top": "185px",
+        "left": "177px",
+        "width": "100px",
+        "height": "20px",
+        "backgroundColor": "transparent",
+        "color": "#000000",
+        "position": "absolute",
+        "fontSize": "16px",
+        "fontFamily": "Arial, sans-serif",
+        "fontWeight": "bold",
+        "textAlign": "center",
+        "lineHeight": "40px"
+      },
+      "content": "Contraseña:",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "9e9674f5-eda4-4f4e-b943-c34cc50fe807",
+      "type": "input",
+      "style": {
+        "top": "129px",
+        "left": "278px",
+        "width": "200px",
+        "height": "40px",
+        "backgroundColor": "#ffffff",
+        "color": "#333333",
+        "border": "1px solid #cccccc",
+        "borderRadius": "4px",
+        "position": "absolute",
+        "fontSize": "14px",
+        "fontFamily": "Arial, sans-serif",
+        "padding": "8px",
+        "display": "block"
+      },
+      "content": "",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "461753f2-d7d5-46fa-b5e6-eec52d00f34f",
+      "type": "input",
+      "style": {
+        "top": "189px",
+        "left": "283px",
+        "width": "200px",
+        "height": "40px",
+        "backgroundColor": "#ffffff",
+        "color": "#333333",
+        "border": "1px solid #cccccc",
+        "borderRadius": "4px",
+        "position": "absolute",
+        "fontSize": "14px",
+        "fontFamily": "Arial, sans-serif",
+        "padding": "8px",
+        "display": "block"
+      },
+      "content": "",
+      "children": [],
+      "parentId": null
+    },
+    {
+      "id": "2255254c-c769-4a40-8d70-2bbe66684179",
       "type": "button",
       "style": {
-        "top": "342px",
-        "left": "332px",
+        "top": "259px",
+        "left": "327px",
         "width": "120px",
         "height": "40px",
         "backgroundColor": "#4f46e5",
@@ -25,70 +134,8 @@
         "transition": "all 0.2s ease",
         "display": "inline-block"
       },
-      "content": "Click me",
+      "content": "Iniciar sesion",
       "children": [],
-      "parentId": null
-    },
-    {
-      "id": "b4bb2e08-d21c-4646-8a80-aee1536c05e1",
-      "type": "label",
-      "style": {
-        "top": "232px",
-        "left": "333px",
-        "width": "100px",
-        "height": "20px",
-        "backgroundColor": "transparent",
-        "color": "#000000",
-        "position": "absolute",
-        "fontSize": "16px",
-        "fontFamily": "Arial, sans-serif",
-        "fontWeight": "bold",
-        "textAlign": "center",
-        "lineHeight": "40px"
-      },
-      "content": "Etiqueta:",
-      "children": [],
-      "parentId": null
-    },
-    {
-      "id": "506ccf95-31e3-47e9-b210-ca13dc8db71e",
-      "type": "div",
-      "style": {
-        "top": "64px",
-        "left": "269px",
-        "width": "200px",
-        "height": "100px",
-        "backgroundColor": "#f0f0f0",
-        "color": "#000000",
-        "border": "1px solid #cccccc",
-        "borderRadius": "4px",
-        "position": "absolute",
-        "fontSize": "16px",
-        "fontFamily": "Arial, sans-serif",
-        "fontWeight": "bold",
-        "textAlign": "center",
-        "lineHeight": "40px"
-      },
-      "content": "Nuevo Div",
-      "children": [
-        {
-          "id": "d1817023-c6f5-405c-bca8-aada20640bc0",
-          "style": {
-            "top": "19px",
-            "left": "46px",
-            "width": "100px",
-            "height": "60px",
-            "backgroundColor": "#d0d0ff",
-            "color": "#004040",
-            "border": "2px",
-            "borderRadius": "10px",
-            "position": "absolute"
-          },
-          "content": " div hijo",
-          "children": [],
-          "parentId": "506ccf95-31e3-47e9-b210-ca13dc8db71e"
-        }
-      ],
       "parentId": null
     }
   ]
